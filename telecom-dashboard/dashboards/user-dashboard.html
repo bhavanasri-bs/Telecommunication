@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleSignal User</title>
+    <link rel="stylesheet" href="../css/userdashboard.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Leaflet.js for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            TeleSignal
+        </div>
+        <div class="sidebar-nav">
+            <a href="#" class="nav-item active" onclick="insightsManager.switchView('dashboard', this)">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+            <a href="#" class="nav-item" onclick="insightsManager.switchView('insights', this)">
+                <i class="bi bi-lightbulb"></i> Insights
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <button onclick="auth.logout()" class="logout-btn">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Dashboard View -->
+        <div id="dashboard-view" class="view-section active">
+            <div class="dashboard-header mb-4">
+                <h1 class="dashboard-title">user Overview</h1>
+                <div class="user-info">
+                    <div class="user-profile-container" id="userProfileContainer">
+                        <div class="user-avatar" id="userAvatar">J</div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-dropdown-header">
+                                <div class="user-name" id="userName">Name</div>
+                                <div class="user-email" id="userEmail">email@gmail.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="filter-section">
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">State</label>
+                        <select id="filter-state" class="filter-select">
+                            <option value="All">All</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">City</label>
+                        <select id="filter-city" class="filter-select">
+                            <option value="All">All</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Area</label>
+                        <select id="filter-area" class="filter-select">
+                            <option value="All">All</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Network_type</label>
+                        <select id="filter-network" class="filter-select">
+                            <option value="All">All</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-section">
+                <div class="kpi-card">
+                    <div class="kpi-icon">📡</div>
+                    <div class="kpi-label">Best Operator</div>
+                    <div class="kpi-value" id="kpi-best-operator">
+                        <span class="operator-badge airtel">Airtel</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">⬇️</div>
+                    <div class="kpi-label">Avg Download Speed</div>
+                    <div class="kpi-value" id="kpi-avg-download">182.60</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">⬆️</div>
+                    <div class="kpi-label">Avg Upload Speed</div>
+                    <div class="kpi-value" id="kpi-avg-upload">54.72</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">⭐</div>
+                    <div class="kpi-label">Final Network Score</div>
+                    <div class="kpi-value" id="kpi-network-score">0.55</div>
+                </div>
+            </div>
+
+            <!-- Visualizations Grid -->
+            <div class="viz-grid">
+                <!-- Map Visualization -->
+                <div class="viz-card half-width">
+                    <h3 class="viz-title">Final Network Score and Best Operator by Area</h3>
+                    <div id="map-container"></div>
+                </div>
+
+                <!-- Download Speed by Operator and City -->
+                <div class="viz-card half-width">
+                    <h3 class="viz-title">Avg Download Speed by Operator and City</h3>
+                    <div class="chart-container">
+                        <canvas id="chart-download-speed"></canvas>
+                    </div>
+                </div>
+
+                <!-- Latency by Peak Hour -->
+                <div class="viz-card half-width">
+                    <h3 class="viz-title">Average of Latency_ms by is_peak_hour and Operator</h3>
+                    <div class="chart-container">
+                        <canvas id="chart-latency"></canvas>
+                    </div>
+                </div>
+
+                <!-- Download Speed by Hour -->
+                <div class="viz-card half-width">
+                    <h3 class="viz-title">Avg Download Speed by Hour and Operator</h3>
+                    <div class="chart-container">
+                        <canvas id="chart-hourly-speed"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="table-container">
+                <h3 class="viz-title">Area-wise Network Performance Metrics</h3>
+                <table class="data-table" id="data-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-column="area">Area</th>
+                            <th class="sortable" data-column="operator">Operator</th>
+                            <th class="sortable" data-column="download">Avg Download Speed</th>
+                            <th class="sortable" data-column="upload">Avg Upload Speed</th>
+                            <th class="sortable" data-column="score">Final Network Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <tr>
+                            <td colspan="5" class="loading">Loading data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Insights View -->
+        <div id="insights-view" class="view-section">
+            <div id="insights-container" class="insights-grid">
+                <!-- Data populated by JS -->
+                <div class="text-center w-100 py-5">
+                    <p>Loading insights...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Module -->
+    <script src="../js/auth.js"></script>
+
+    <!-- JavaScript Modules -->
+    <script src="../js/data-processor.js"></script>
+    <script src="../js/map-manager.js"></script>
+    <script src="../js/chart-manager.js"></script>
+    <script src="../js/table-manager.js"></script>
+    <script src="../js/insights-manager.js"></script>
+    <script src="../js/dashboard-controller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TeleNet Insights</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/auth.css"> <!-- reusing auth form styles for contact form -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item ion-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo"><ion-icon name="cellular-outline"></ion-icon> TeleSignal</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <h1 class="section-title">Get in Touch</h1>
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-info-card">
+                <h3>Send us a Message</h3>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">Fill out the form below and we'll get back to
+                    you shortly.</p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="contactName" placeholder="Your Name"
+                            style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--glass-border); color: white; border-radius: 8px;">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="contactEmail" placeholder="Your Email"
+                            style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--glass-border); color: white; border-radius: 8px;">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="contactMessage" rows="5" placeholder="How can we help?"
+                            style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--glass-border); color: white; border-radius: 8px; resize: none;"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="validateContactForm()"
+                        style="width: 100%;">Send
+                        Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info-card">
+                <h3>Contact Information</h3>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">Have questions about our platform? Our team is
+                    here to help 24/7.</p>
+
+                <div class="info-item">
+                    <ion-icon name="location-outline"></ion-icon>
+                    <div>
+                        <h4>Headquarters</h4>
+                        <p style="color: var(--text-muted);">Social Prachar, KPHB Colony</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <div>
+                        <h4>Email Us</h4>
+                        <p style="color: var(--text-muted);">support@socialtek.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <ion-icon name="call-outline"></ion-icon>
+                    <div>
+                        <h4>Call Us</h4>
+                        <p style="color: var(--text-muted);">+91 7257325458</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Map -->
+                <div
+                    style="margin-top: 30px; border-radius: 12px; overflow: hidden; height: 150px; border: 1px solid var(--glass-border);">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.297437016149!2d78.38883587493775!3d17.49326248341142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91f4633036f3%3A0x89ad0b3684a0d81b!2sSocialPrachar!5e0!3m2!1sen!2sin!4v1711617457470"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>TeleSignal</h3>
+                <p>Next-Gen Network Analytics for a connected world.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="features.html">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">API</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="#">Careers</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 TeleSignal Insights. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function validateContactForm() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+
+            if (!name || !email || !message) {
+                alert('all fields are required');
+                return;
+            }
+
+            alert('message sent');
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+    <script type="module" src="js/auth.js"></script>
+</body>
+
+</html>

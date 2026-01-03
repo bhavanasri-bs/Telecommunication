@@ -1,0 +1,205 @@
+/* Sidebar Styles - Updated to match Original Dashboard Theme */
+:root {
+    --sidebar-width: 260px;
+    --sidebar-glass-bg: rgba(255, 255, 255, 0.08);
+    --sidebar-glass-border: rgba(255, 255, 255, 0.15);
+    --sidebar-hover: rgba(255, 255, 255, 0.1);
+    --sidebar-active: rgba(255, 255, 255, 0.15);
+    --sidebar-text: #ffffff;
+    --accent-color: #4A90E2;
+    /* Original Primary Blue */
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: rgba(15, 12, 41, 0.95);
+    /* Deep dark background that blends with the gradient body */
+    backdrop-filter: blur(10px);
+    color: var(--sidebar-text);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-right: 1px solid var(--sidebar-glass-border);
+}
+
+.sidebar-brand {
+    padding: 2.5rem 2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-bottom: 1px solid var(--sidebar-glass-border);
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 1.5rem 0;
+}
+
+.nav-item {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-item i {
+    font-size: 1.2rem;
+}
+
+.nav-item:hover {
+    background-color: var(--sidebar-hover);
+    color: white;
+    padding-left: 2.5rem;
+}
+
+.nav-item.active {
+    background-color: var(--sidebar-active);
+    color: white;
+    border-left: 4px solid var(--accent-color);
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--sidebar-glass-border);
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background: rgba(255, 77, 77, 0.1);
+    border: 1px solid rgba(255, 77, 77, 0.3);
+    color: #ff4d4d;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 77, 77, 0.2);
+    border-color: #ff4d4d;
+    transform: translateY(-2px);
+}
+
+/* Adjust Main Content for Sidebar */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* Views */
+.view-section {
+    display: none;
+}
+
+.view-section.active {
+    display: block;
+}
+
+/* Insights Styles - Updated for Glassmorphism */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.insight-card {
+    background: var(--sidebar-glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--sidebar-glass-border);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: white;
+    position: relative;
+    /* For absolute tooltip */
+}
+
+.insight-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.insight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.insight-category {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.insight-icon {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.insight-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
+.insight-trend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.trend-up {
+    color: #4CAF50;
+}
+
+.trend-down {
+    color: #F44336;
+}
+
+.trend-neutral {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.trend-new {
+    color: #FFC107;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .sidebar.mobile-open {
+        width: var(--sidebar-width);
+    }
+}

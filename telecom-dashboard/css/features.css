@@ -1,0 +1,52 @@
+/* features.css - Styles specific to Features Page */
+
+.features-intro-section {
+    text-align: center;
+}
+
+.features-intro-text {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+/* Feature Lists */
+.feature-list {
+    color: var(--text-muted);
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.feature-icon-check {
+    color: var(--primary-color);
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Security Feature Specifics */
+.security-placeholder {
+    height: 300px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--glass-border);
+}
+
+.security-icon {
+    font-size: 8rem;
+    color: #10b981;
+}
+
+.view-demo-btn {
+    font-size: 1.1rem;
+    padding: 15px 40px;
+}

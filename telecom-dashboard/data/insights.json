@@ -1,0 +1,54 @@
+{
+  "admin": [
+    {
+      "category": "Network Performance",
+      "insight": "Overall network score has improved by 12% across all operators this quarter.",
+      "trend": "up",
+      "icon": "bi-graph-up-arrow"
+    },
+    {
+      "category": "User Engagement",
+      "insight": "Data consumption in urban areas reached a new peak of 45PB last month.",
+      "trend": "up",
+      "icon": "bi-people"
+    },
+    {
+      "category": "Operator Analysis",
+      "insight": "Jio and Airtel continue to lead in download speeds, with BSNL showing rapid growth in fiber deployments.",
+      "trend": "neutral",
+      "icon": "bi-broadcast"
+    },
+    {
+      "category": "Latency Trends",
+      "insight": "Average latency has decreased by 5ms due to new edge server implementations in Tier 2 cities.",
+      "trend": "down",
+      "icon": "bi-clock-history"
+    }
+  ],
+  "user": [
+    {
+      "category": "Network Quality",
+      "insight": "Your current area has 15% better network coverage than the city average.",
+      "trend": "up",
+      "icon": "bi-signal"
+    },
+    {
+      "category": "Usage Patterns",
+      "insight": "Peak usage hours are detected between 8 PM - 11 PM. Try off-peak hours for faster downloads.",
+      "trend": "neutral",
+      "icon": "bi-lightning-charge"
+    },
+    {
+      "category": "Speed Recommendation",
+      "insight": "Switching to 5G could potentially increase your browsing speed by up to 10x.",
+      "trend": "up",
+      "icon": "bi-speedometer2"
+    },
+    {
+      "category": "Speed Overview",
+      "insight": "Your average download speed is being calculated...",
+      "trend": "neutral",
+      "icon": "bi-activity"
+    }
+  ]
+}
